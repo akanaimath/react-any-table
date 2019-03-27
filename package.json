@@ -1,0 +1,57 @@
+{
+  "name": "react-any-table",
+  "version": "0.1.0",
+  "description": "React Table Extension",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "babel --source-maps inline src --out-dir build --minified --compact true --retain-lines",
+    "build_watch": "rm -f build/*.js build/*.map && babel --source-maps inline src --out-dir build --minified --compact true --retain-lines --watch",
+    "demo": "webpack -d",
+    "demo_watch": "npm run build_watch && npm run demo --watch",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akanaimath/react-any-table.git"
+  },
+  "keywords": [
+    "React",
+    "Table",
+    "Any"
+  ],
+  "files": [
+    "build/",
+    "table.css"
+  ],
+  "author": "akanaimath",
+  "license": "MIT",
+  "dependencies": {
+    "react": "16.x",
+    "react-dom": "16.x",
+    "react-icons": "^3.5.0",
+    "react-router-dom": "^5.0.0",
+    "react-table": "^6.9.2",
+    "react-utility": "^1.0.10"
+  },
+  "devDependencies": {
+    "babel-cli": "6.x",
+    "babel-core": "6.x",
+    "babel-loader": "7.x",
+    "babel-plugin-minify-dead-code-elimination": "0.x",
+    "babel-plugin-transform-class-properties": "6.x",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "6.x",
+    "babel-preset-env": "1.x",
+    "babel-preset-react": "6.x",
+    "babel-register": "6.x",
+    "css-loader": "^2.1.1",
+    "mocha": "4.x",
+    "prop-types": "^15.6.0",
+    "react-addons-test-utils": "^15.6.2",
+    "style-loader": "0.x",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "unit.js": "^2.1.0",
+    "url-loader": "^1.1.2",
+    "webpack": "3.x"
+  }
+}
