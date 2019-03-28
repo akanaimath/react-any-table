@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactTable from 'react-table';
+import 'react-table/react-table.css';
 
 class OnClick extends Component {
   constructor(props) {
@@ -61,7 +62,7 @@ const drivers = {
 
       const label = config.label;
       const value = config.value;
-      const key = anyData.state.nameSpace + '-list-';
+      const key = '-list-';
       return (<ul className={config.className}>
         {row[column].map((ref, id) => {
           return <li key={`${key}-${id}`}>{ref[label]}: {ref[value]}</li>
@@ -99,7 +100,7 @@ const drivers = {
         anyData.setState({ data: anyData.state.data });
       };
       const list = config.select.map(select =>
-        <option key={`${anyData.state.nameSpace}-opt-${++anyData.safeId}-${complexRow.index}`} value={select.value}>
+        <option key={`-opt-${++anyData.safeId}-${complexRow.index}`} value={select.value}>
           {select.label}
         </option>
       );
@@ -141,7 +142,7 @@ const drivers = {
         if (id > 0) {
           list.push('|');
         }
-        const target_key = `${anyData.state.nameSpace}-${id}-${complexRow.index}`;
+        const target_key = `${id}-${complexRow.index}`;
         list.push(<button key={target_key} onClick={() => {
           const result = { action: key, data: { row: row, column: column } };
           onSumbit(result);
@@ -270,16 +271,15 @@ class AnyTable extends Component {
       configs: {},
       className: props.className,
       classNameFooter: props.classNameFooter,
-      // DisplayBuilder: GLOBAL_DISPLAY_BUILDER,
     };
     if (props.hasOwnProperty('footer')) {
       state.footer = props.footer;
     }
-    if (!props.data.hasOwnProperty('last')) {
+    if (props.loading) {
       state.loading = true;
       return state;
     }
-    const data = props.data.last.data;
+    const data = props.data;
     state.data = data;
 
     let type = typeof data;
@@ -452,20 +452,20 @@ class AnyTable extends Component {
   }
 
   static defaultProps = {
-    requires: [],
     data: [],
     loading: true,
-    DisplayBuilder: null,
     columns: [],
     error: false,
     defaultPageSize: 50,
     meta: 'meta-key',
-    Header: "Rows",
+    Header: "Any table rows",
     configs: {},
     hasMeta: true,
     className: "React-Table-Fix",
     classNameFooter: "",
     showPagination: true,
+    pending:false,
+    footer:{},
   }
 }
 
